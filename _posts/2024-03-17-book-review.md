@@ -1,12 +1,14 @@
 ---
 layout: post
-title: Book Review on World of Abstract Mathematics
+title: Book Review:World of Abstract Mathematics
 date: 2024-03-17 10:14:00-0400
-description: an example of a blog post with table of contents on a sidebar
-tags: abstract maths
+description: High level overview of the book World of Abstract Mathematics
+tags:
 categories: maths
-giscus_comments: true
+giscus_comments: false
+featured: true
 related_posts: false
+
 toc:
   sidebar: left
 ---
@@ -29,7 +31,7 @@ If you want to learn more about how to customize the table of contents of your s
 
 I have always thought that there were no absolute truths, like how can we know something is true or always true when there are much more unknowns, magnitudes higher, than what we currently know. Also if we do something repeatedly 1000 times and it gives us the same result do we consider it to be always true? How do we know that the result would be the same the 1001th time we perform the experiment?
 
-As Brendan explains in this chapter, this is one of the questions mathematics seeks to answer, and it answers this question by mathematical proofs. So if you've ever wondered why mathematicians put themselves through what looks like a painful and really boring process of writing proofs here's your answer. My mind also goes back to the movie "The Man Who Knew Infinity", and it's clearer now why Ramanujan's supervisor was often in disagreement with him, despite his brilliance. Ramanujan relied heavily on intuition and often arrived at complex mathematical results without providing proofs that were standard practice in the mathematical community.
+As Prof. Brendan explains in this chapter, this is one of the questions mathematics seeks to answer, and it answers this question by mathematical proofs. So if you've ever wondered why mathematicians put themselves through what looks like a painful and really boring process of writing proofs here's your answer. My mind also goes back to the movie "The Man Who Knew Infinity", and it's clearer now why Ramanujan's supervisor was often in disagreement with him, despite his brilliance. Ramanujan relied heavily on intuition and often arrived at complex mathematical results without providing proofs that were standard practice in the mathematical community.
 
 Let's look at  Goldbach's conjecture for example. It says that every even number greater than or equal to 4 can be written as the sum of two primes (yeah go ahead and try it for a couple of numbers) but there's no mathematical proof for this and we can't physically compute this for very large numbers hence there's no way for us to tell that the mathematical statement is true.
 
@@ -57,20 +59,24 @@ Chapter 2 looked at inductive arguments where a fact depends on an immediate pre
 <!-- I'll give an example of both cases. An example of the first case is the statement that the Sum of first n odd integers is n^2. Can P1 always win. We also looked at explaining mathematical induction using 3 different analogies. I'll describe the domino analogy. If you are a programmer you would already notice that mathematical induction is also the basis of recursive programming. -->
 
 Chapter 5 was a more formal introduction to the topic, mathematical induction as a principle was properly defined mathematically. The Principle of Mathematical Induction (PMI) says
-Let P(n) be some “fact” or “observation” that depends on the natural number n. Assume that
-1. P(1) is a true statement.
-2. Given any k ∈ N, if P(k) is true, then we can conclude necessarily that P(k + 1) is true.
-Then the statement P(n) must be true for every natural number n ∈ N.
+
+Let $$P(n)$$ be some "fact" or "observation" that depends on the natural number $$n$$. Assume that
+1. $$P(1)$$ is a true statement
+2. Given any $$k ∈ N$$, if $$P(k)$$ is true, then we can conclude necessarily that $$P(k + 1)$$ is true
+
+Then the statement $$P(n)$$ must be true for every natural number $$n ∈ N$$
 
 Some questions that might pop up is what happens when the base case is not 1, what happens in a scenario where the inductive argument is backwards, these are the variants of induction. Another variant is inducting on even/odd numbers.
 
-Guess what, all we've discussed so far is known as regular induction and there is such a thing as strong induction. Let me pull a Dr Brendan on you here, can you guess the difference?
+Guess what, all we've discussed so far is known as regular induction and there is such a thing as strong induction. Let me pull a Prof. Brendan on you here, can you guess the difference?
 
-Well with regular induction we say that p(k) is sufficient for us to deduce p(k+1), but with strong induction p(1), p(2)….p(k) are all sufficient to deduce p(k+1). Here's the Strong Principle Mathematical Induction
-Let P(n) be a variable proposition. Suppose that
-1. P(1) holds True, and
-2. ∀k ∈ N .  ∀i ∈ [k] . P(i)  =⇒ P(k + 1) holds True
-Then ∀n ∈ N. P(n) holds True.
+Well with regular induction we say that $$p(k)$$ is sufficient for us to deduce $$p(k+1)$$, but with strong induction $$p(1), p(2)...p(k)$$ are all sufficient to deduce $$p(k+1)$$. Here's the Strong Principle Mathematical Induction
+
+Let $$P(n)$$ be a variable proposition. Suppose that
+1. $$P(1)$$ holds True, and
+2. $$∀k ∈ N .  ∀i ∈ [k] . P(i)  => P(k + 1)$$ holds True
+
+Then $$∀n ∈ N$$. $$P(n)$$ holds True.
 
 Finally an equivalence relationship between PMI and SPMI is shown i.e whenever we need to prove something by PMI we can as well use SPMI, notice that the converse is also true. We'll see what an equivalent relationship means in c4 but for now if A is equivalent to B, A implies B also means that B implies A.
 
@@ -81,7 +87,7 @@ Finally an equivalence relationship between PMI and SPMI is shown i.e whenever w
 
 You've probably heard that set theory is the foundation of mathematics, Prof. Brendan puts it this way “Everything we do in mathematics is built upon the foundation of sets” but based on what you did in high school and depending on which high school you went to you can probably only think of venn diagrams and you are wondering how venn diagrams can be the foundation that the mathematics is built upon. It might help you to drop the idea of Venn diagrams for a moment as you begin to read this chapter and get ready to take on a new perspective.
 
-Really what set theory does is that this it gives us a way to talk about mathematical objects and how to work with them. Let's rewind back a little. Mathematics is about truth finding, to find truths we identify patterns, make hypothesis in form of mathematical statements, then we proof that this statements are true or false using logic and mathematical techniques based on existing truths(that have also been rigorously proved). In mathematical statements we talk about mathematical objects. Try to recall any formal mathematical theorem you know maybe Pythagoras theorem, you'd often here things like "the set of Natural numbers", or "the set of positive Integers", these are the mathematical objects that set theory allows us to talk about i.e with set theory we can group a collection of objects that have a well defined property. This collection of object is what is called a set and is denoted with "{}". Basically we can group a collection of objects that have a common property and make a mathematical statement about it which we can then prove to be true or false. Another example is the statement "The sum of first n odd numbers is n^2" can you identify the mathematical object here? You're right if you say odd numbers. Of course odd numbers is a set that contains integers x that have the property that x divided by 2 is 1. Integers are mathematical objects too and odd numbers are subsets of Integers.
+Really what set theory does is that this it gives us a way to talk about mathematical objects and how to work with them. Let's rewind back a little. Mathematics is about truth finding, to find truths we identify patterns, make hypothesis in form of mathematical statements, then we proof that this statements are true or false using logic and mathematical techniques based on existing truths(that have also been rigorously proved). In mathematical statements we talk about mathematical objects. Try to recall any formal mathematical theorem you know maybe Pythagoras theorem, you'd often here things like "the set of Natural numbers", or "the set of positive Integers", these are the mathematical objects that set theory allows us to talk about i.e with set theory we can group a collection of objects that have a well defined property. This collection of object is what is called a set and is denoted with $${}$$. Basically we can group a collection of objects that have a common property and make a mathematical statement about it which we can then prove to be true or false. Another example is the statement "The sum of first $$n$$ odd numbers is $$n^2$$" can you identify the mathematical object here? You're right if you say odd numbers. Of course odd numbers is a set that contains integers $$x$$ that have the property that $$x$$ divided by 2 is 1. Integers are mathematical objects too and odd numbers are subsets of Integers.
 
 One thing to clarify here is the difference between "a subset of" and "an element of". Prof. Brendan uses the analogy of a bag here, assuming you have two bags A and B if you take out all the elements of B and you can find them in A, then B "is a subset of" A, notice that B is not a bag inside of A. If it was inside of A then it would be "an element of" A.
 
@@ -109,7 +115,7 @@ Both of these things alongside the mathematical objects introduced in the previo
 
 But what exactly do we mean by mathematical statements/proposition, we've seen a few examples. A statement that is grammatically correct AND has just one truth value i.e it can either be true or false, not both or neither, not relatively or subjectively true (maybe this is what differentiates maths from philosophy?). The idea that a mathematical statement can either be true or False is actually one of the axioms of mathematics called "The Law of excluded middle"
 
-What about statements like "x^2 - 1 = 0" you might ask. These are variable propositions cause their truth values depends on the value of the variable x, e.g this statement is True when the value of x is 1 but False when the value of x is 8. Variable propositions like this can be treated as a mathematical statement when we add some constraints to the values that the variable can take.
+What about statements like $$x^2 - 1 = 0$$  you might ask. These are variable propositions cause their truth values depends on the value of the variable $$x$$, e.g this statement is True when the value of $$x$$ is 1 but False when the value of $$x$$ is 8. Variable propositions like this can be treated as a mathematical statement when we add some constraints to the values that the variable can take.
 
 Now that we are clear on what a mathematical statement is let's now see the role that logic plays in writing and proving them.
 
@@ -162,7 +168,7 @@ The rest of this chapter shows some correlations between set operations and logi
 
 Chapter 6 Introduces relations which help us talk about Functions in chapter 7 in a more mathematical way.
 
-Relation is a set that relates the elements of two sets. Relations is a way of encoding information about the elements of two sets. It is a way of comparing elements of 2 sets and saying that they satisfy some property. Think of the function x^2 and its set {(2,4), (3, 9)} this is a way of comparing the set of Natural numbers and saying one number is a square of the other.
+Relation is a set that relates the elements of two sets. Relations is a way of encoding information about the elements of two sets. It is a way of comparing elements of 2 sets and saying that they satisfy some property. Think of the function $$x^2$$ and its set $${(2,4), (3, 9)}$$ this is a way of comparing the set of Natural numbers and saying one number is a square of the other.
 
 A function is a special kind of relation
 
