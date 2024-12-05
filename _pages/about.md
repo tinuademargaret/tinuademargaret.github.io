@@ -18,5 +18,5 @@ social: true # includes social icons at the bottom of the page
 💡 &nbsp;I'm a budding AI Research Engineer.\
 🎓 &nbsp;I recently completed my masters in Artificial Intelligence at [Heriot-Watt University](https://www.hw.ac.uk/), where I worked with Prof. Ioannis Konstas on Question Generation.\
 🛠 &nbsp;I have previously worked at [Atom Learning](https://atomlearning.co.uk/), [Smartace](https://smartace.ng/) and [InventOne](https://inventone.ng/#/).\
-🔭 &nbsp;My research interests are on AI safety and Alignment\
+🔭 &nbsp;My research interests are in reasoning, AI for science and AI alignment.\
 :writing_hand: &nbsp; Sometimes I make notes on my blog [here](https://tinuademargaret.github.io/blog/).
