@@ -21,3 +21,603 @@ $max-content-width: {{ site.max_width }};
   "tabler-icons/tabler-icons-filled.scss",
   "tabler-icons/tabler-icons-outline.scss"
 ;
+
+/* =======================================================================
+ *  redesign — frontier lab / cinematic / literary
+ *  typography:  Fraunces (display serif)  +  Inter (body)  +  JetBrains Mono (metadata)
+ *  palette:     warm parchment & ember (light)  /  carbon & amber (dark)
+ * ======================================================================= */
+
+$font-serif: "Fraunces", "Iowan Old Style", "Hoefler Text", Georgia, serif;
+$font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+$font-mono: "JetBrains Mono", "SF Mono", "Menlo", monospace;
+
+/* -------- design tokens — single source of truth for type & rhythm -------- */
+
+// vertical rhythm (multiply for spacing)
+$space-1: 0.5rem;
+$space-2: 1rem;
+$space-3: 1.5rem;
+$space-4: 2.5rem;
+$space-5: 4rem;
+$space-6: 6rem;
+
+// type scale (one ladder, used everywhere)
+$text-xs: 0.72rem;     // mono labels / meta
+$text-sm: 0.92rem;     // small body, sidebars
+$text-base: 1rem;      // body
+$text-md: 1.12rem;     // lede, large body
+$text-lg: 1.4rem;      // small titles (project, post)
+$text-xl: 1.9rem;      // page intro
+$text-2xl: 2.8rem;     // section display
+$text-display: clamp(2.6rem, 5vw, 3.8rem);  // hero name (sized so it fits on one line beside illustration)
+
+// unified mono-label token (used by every small uppercase eyebrow on the site)
+%label {
+  font-family: $font-mono;
+  font-size: $text-xs;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--global-text-color-light);
+  font-weight: 400;
+}
+
+// same token but with !important — for selectors fighting framework defaults
+@mixin label-important {
+  font-family: $font-mono !important;
+  font-size: $text-xs !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+}
+
+/* -------- global typography reset -------- */
+
+body,
+p,
+li,
+div,
+span,
+.card-text {
+  font-family: $font-sans;
+  font-feature-settings: "ss01", "cv11";
+}
+
+body {
+  font-size: $text-base;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+}
+
+h1, h2, h3, h4, h5, h6,
+.post-title,
+.card-title {
+  font-family: $font-serif;
+  font-weight: 400;
+  font-variation-settings: "opsz" 96, "SOFT" 50;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+h1, .post-title { font-size: $text-2xl; }
+h2 { font-size: $text-xl; margin-top: $space-4; }
+h3 { font-size: $text-lg; }
+
+em, i, .post-title em {
+  font-family: $font-serif;
+  font-style: italic;
+  font-variation-settings: "opsz" 96, "SOFT" 100;
+}
+
+code, pre, kbd, samp {
+  font-family: $font-mono;
+}
+
+/* -------- navbar: stripped & monospaced -------- */
+
+.navbar {
+  border-bottom: 1px solid var(--global-divider-color) !important;
+  background-color: var(--global-bg-color) !important;
+  opacity: 1 !important;
+  backdrop-filter: blur(8px);
+
+  .navbar-brand {
+    font-family: $font-serif !important;
+    font-weight: 500;
+    font-size: 1.15rem;
+    font-style: italic;
+    letter-spacing: -0.01em;
+
+    .font-weight-bold {
+      font-weight: 600;
+    }
+  }
+
+  .navbar-nav .nav-link {
+    @include label-important;
+    text-transform: lowercase !important;
+    color: var(--global-text-color-light) !important;
+    position: relative;
+    padding: 0.4rem 0.85rem !important;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      margin-right: 0.5rem;
+      margin-bottom: 2px;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.2s ease;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      color: var(--global-text-color) !important;
+      &::before { background: var(--global-theme-color); }
+    }
+  }
+
+  .navbar-nav .nav-item.active > .nav-link {
+    color: var(--global-text-color) !important;
+    font-weight: 500;
+    &::before { background: var(--global-theme-color); }
+  }
+}
+
+/* -------- about layout: asymmetric, cinematic -------- */
+
+/* hide the empty default profile container — we render our own illustration */
+.post > article > .profile { display: none; }
+
+/* hero illustration — supports inline SVG or a raster image (gif/png/jpg).
+   Now lives inside .lab-hero as a flex item, sitting beside the name. */
+.hero-illustration {
+  flex: 0 0 auto;
+  width: 340px;
+  max-width: 42%;
+  margin: 0;
+  color: var(--global-text-color);
+  opacity: 1;
+
+  svg,
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero-steam {
+    transform-origin: 50% 100%;
+    animation: hero-steam 3.6s ease-in-out infinite;
+  }
+}
+
+@keyframes hero-steam {
+  0%, 100% { opacity: 1; transform: translateY(0) scaleY(1); }
+  50%      { opacity: 0.35; transform: translateY(-5px) scaleY(1.05); }
+}
+
+.post .post-header {
+  display: none;  /* about page reclaims its own hero */
+}
+
+/* hero block — pared back, name + illustration on a flex row */
+.lab-hero {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: $space-4;
+  margin: $space-3 0 $space-6;
+
+  .hero-text {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .meta-strip {
+    @extend %label;
+    margin-bottom: $space-2;
+  }
+
+  .hero-name {
+    font-family: $font-serif;
+    font-size: $text-display;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin: 0 0 $space-2;
+    color: var(--global-text-color);
+    white-space: nowrap;
+  }
+
+  .hero-lede {
+    font-family: $font-serif;
+    font-size: $text-md;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 38ch;
+    color: var(--global-text-color);
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .lab-hero {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: $space-3;
+
+    .hero-illustration {
+      width: 65%;
+      max-width: 280px;
+    }
+
+    .hero-name {
+      white-space: normal;
+    }
+  }
+}
+
+/* chapter system — minimal */
+.chapter {
+  margin: $space-5 0;
+
+  .chapter-label {
+    @extend %label;
+    margin-bottom: $space-2;
+  }
+
+  p {
+    font-size: $text-base;
+    line-height: 1.7;
+    max-width: 62ch;
+    color: var(--global-text-color);
+  }
+
+  .lead {
+    font-family: $font-serif;
+    font-size: $text-md;
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  a {
+    color: var(--global-text-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--global-divider-color);
+    padding-bottom: 1px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      border-bottom-color: var(--global-theme-color);
+      color: var(--global-theme-color);
+    }
+  }
+}
+
+/* NOW — bare two-column type, no card */
+.now-card {
+  font-family: $font-sans;
+  font-size: $text-base;
+  line-height: 1.5;
+
+  .row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: $space-2;
+    align-items: baseline;
+    padding: $space-2 0;
+    border-bottom: 1px solid var(--global-divider-color);
+
+    &:last-child { border-bottom: none; }
+  }
+
+  .key {
+    @extend %label;
+  }
+
+  .val em {
+    color: var(--global-text-color);
+    font-style: italic;
+    font-family: $font-serif;
+  }
+}
+
+/* focus list — typographic */
+.focus-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: focus;
+
+  li {
+    counter-increment: focus;
+    padding: $space-2 0 $space-2 2.6rem;
+    position: relative;
+    font-size: $text-base;
+    line-height: 1.55;
+    color: var(--global-text-color);
+
+    &::before {
+      content: counter(focus, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 1.1rem;
+      @extend %label;
+    }
+  }
+}
+
+/* footnotes-style background list */
+.notes-block {
+  font-family: $font-serif;
+  font-style: italic;
+  font-size: $text-base;
+  line-height: 1.8;
+  color: var(--global-text-color-light);
+  max-width: 60ch;
+
+  span.year {
+    @extend %label;
+    color: var(--global-text-color);
+    margin-right: $space-1;
+    display: inline-block;
+    min-width: 4rem;
+  }
+}
+
+/* -------- projects / publications page intros -------- */
+
+.editorial-intro {
+  margin: $space-3 0 $space-5;
+
+  .kicker {
+    @extend %label;
+    color: var(--global-theme-color);
+    margin-bottom: $space-2;
+  }
+
+  h1, h2, .lede-title {
+    font-family: $font-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: $text-xl;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: $space-2;
+    color: var(--global-text-color);
+  }
+
+  p {
+    font-family: $font-serif;
+    font-size: $text-md;
+    line-height: 1.55;
+    max-width: 60ch;
+    color: var(--global-text-color-light);
+    margin: 0;
+  }
+}
+
+/* project index — stacked editorial list, one per line */
+.project-index {
+  margin-top: $space-3;
+  border-top: 1px solid var(--global-divider-color);
+}
+
+.project-entry {
+  display: grid;
+  grid-template-columns: 2.5rem 140px 1fr auto;
+  gap: $space-3;
+  align-items: start;
+  padding: $space-3 0;
+  border-bottom: 1px solid var(--global-divider-color);
+
+  .num {
+    @extend %label;
+    padding-top: 0.55rem;
+  }
+
+  /* image slot — always reserves space, even when empty */
+  .thumb {
+    width: 140px;
+    aspect-ratio: 4 / 3;
+    background: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.25s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(0.4) contrast(0.95);
+      transition: filter 0.3s ease, transform 0.4s ease;
+    }
+
+    &.empty::after {
+      content: "—";
+      font-family: $font-serif;
+      font-style: italic;
+      font-size: $text-lg;
+      color: var(--global-text-color-light);
+      opacity: 0.5;
+    }
+  }
+
+  .body {
+    min-width: 0;
+    padding-top: 0.1rem;
+  }
+
+  .title {
+    display: block;
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: $text-lg;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--global-text-color);
+    text-decoration: none;
+    border: none !important;
+    margin-bottom: $space-1;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--global-theme-color);
+    }
+  }
+
+  .desc {
+    font-family: $font-sans;
+    font-size: $text-sm;
+    line-height: 1.55;
+    color: var(--global-text-color-light);
+    margin: 0;
+    max-width: 50ch;
+  }
+
+  .meta {
+    @extend %label;
+    text-transform: lowercase;
+    text-align: right;
+    padding-top: 0.55rem;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    .num { color: var(--global-theme-color); }
+    .thumb { border-color: var(--global-theme-color); }
+    .thumb img { filter: grayscale(0) contrast(1); transform: scale(1.03); }
+  }
+}
+
+@media (max-width: 720px) {
+  .project-entry {
+    grid-template-columns: 2rem 1fr;
+    gap: $space-2;
+
+    .thumb {
+      grid-column: 1 / -1;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .meta {
+      grid-column: 2;
+      text-align: left;
+      padding-top: $space-1;
+    }
+  }
+}
+
+/* publications */
+.publications {
+  font-family: $font-sans;
+  ol.bibliography { padding-left: 0; }
+  ol.bibliography li { list-style: none; margin-bottom: $space-3; }
+
+  h2.year, h2.bibliography {
+    @include label-important;
+    color: var(--global-theme-color) !important;
+    border-bottom: 1px solid var(--global-divider-color);
+    padding-bottom: $space-1;
+    margin: $space-5 0 $space-3 !important;
+  }
+
+  .title {
+    font-family: $font-serif !important;
+    font-style: italic;
+    font-size: $text-lg !important;
+    line-height: 1.3;
+    color: var(--global-text-color) !important;
+  }
+
+  .author, .periodical, .links {
+    font-family: $font-sans !important;
+    font-size: $text-sm;
+    line-height: 1.5;
+  }
+}
+
+/* -------- blog / lab notes -------- */
+
+.header-bar {
+  margin-bottom: $space-5;
+
+  h1 {
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: $text-2xl;
+    letter-spacing: -0.025em;
+    margin-bottom: $space-1;
+  }
+
+  h2 {
+    @include label-important;
+    color: var(--global-text-color-light) !important;
+    margin-top: 0 !important;
+  }
+}
+
+.post-list {
+  .post {
+    padding: $space-3 0;
+    border-bottom: 1px solid var(--global-divider-color);
+
+    &:last-child { border-bottom: none; }
+  }
+
+  .post-title,
+  a.post-title {
+    font-family: $font-serif !important;
+    font-style: italic;
+    font-size: $text-lg !important;
+    font-weight: 400;
+    line-height: 1.25;
+    text-transform: none !important;
+    color: var(--global-text-color) !important;
+  }
+}
+
+.post-meta, .post-tags {
+  @include label-important;
+  text-transform: lowercase !important;
+  color: var(--global-text-color-light) !important;
+}
+
+/* social icons on about page */
+.social .contact-icons {
+  font-size: 1.4rem !important;
+  margin-top: $space-3;
+
+  a {
+    margin: 0 0.55rem;
+    i::before { color: var(--global-text-color-light); }
+    &:hover i::before { color: var(--global-theme-color); }
+  }
+}
+
+/* footer */
+footer.sticky-bottom,
+footer.fixed-bottom {
+  @include label-important;
+  text-transform: lowercase !important;
+  padding: $space-3 0;
+}
+
+/* selection */
+::selection {
+  background: var(--global-theme-color);
+  color: var(--global-hover-text-color);
+}
+
+/* progress bar accent */
+progress[value]::-webkit-progress-value { background: var(--global-theme-color); }
+progress[value]::-moz-progress-bar { background: var(--global-theme-color); }
