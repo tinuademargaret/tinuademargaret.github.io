@@ -8,6 +8,9 @@ categories:
 giscus_comments: false
 featured: false
 related_posts: false
+
+toc:
+  sidebar: left
 ---
 
 In the previous post we looked at how languge modelling was done with n-gram models and some key components of neural language models namely the embedding layer and the softmax layer.

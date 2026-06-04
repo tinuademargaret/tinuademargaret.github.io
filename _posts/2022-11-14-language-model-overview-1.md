@@ -8,6 +8,9 @@ categories:
 giscus_comments: false
 featured: true
 related_posts: false
+
+toc:
+  sidebar: left
 ---
 
 Language generation by humans is a sequential process. In acts of communication like speaking or writing, language is generated one word at

@@ -10,13 +10,11 @@ giscus_comments: false
 featured: true
 related_posts: false
 
-## toc:
-
+toc:
   sidebar: left
+---
 
 tldr; I set out to replicate the generative-verifiers recipe on a new problem, namely screening short stories for implicit social bias. A small specialist did learn a useful per story screening boundary that transferred to text from a different model family. But the experiment's real lesson is that per story bias and distributional bias are different targets that can disagree on the very same outputs, which means a verifier that works perfectly at the per story level is exactly the thing that would quietly approve the outputs of a biased generator.
-
----
 
 I did not begin with a thesis about fairness. I began because generative verifiers struck me as one of those ideas that feel obviously right the moment you read them: train a model to write out a rationale and then commit to a verdict, and score the verdict. I wanted to do more than restate the result, so I went looking for a problem the recipe had not been pointed at, somewhere the verdict would be genuinely hard to produce. Implicit social bias in generated text seemed like a good candidate, it is a subtle problem and having a verifier being able to reason might help improve it's performance learning from a handful of examples.
 
@@ -118,16 +116,7 @@ The specialist is trained in the generative verifier chain of thought style desc
 
 ## Results
 
-
-| System                         | Main      | Subtle    | Held-out  | Hard-neg  | Yes recall | No recall |
-| ------------------------------ | --------- | --------- | --------- | --------- | ---------- | --------- |
-| Base, direct                   | 73.0%     | 73.6%     | 68.6%     | 100.0%    | 46.0%      | 100.0%    |
-| Base, CoT                      | 62.2%     | 62.5%     | 64.3%     | 20.8%     | 100.0%     | 24.3%     |
-| Same-family judge, direct      | 58.1%     | 47.2%     | 60.0%     | 95.8%     | 40.5%      | 75.7%     |
-| Same-family judge, CoT         | 52.7%     | 48.6%     | 52.9%     | 87.5%     | 29.7%      | 75.7%     |
-| Different-family judge, direct | 56.8%     | 50.0%     | 55.7%     | 87.5%     | 37.8%      | 75.7%     |
-| Different-family judge, CoT    | 60.8%     | 54.2%     | 52.9%     | 62.5%     | 78.4%      | 43.2%     |
-| **Specialist**                 | **90.5%** | **94.4%** | **90.0%** | **91.7%** | **86.5%**  | **94.6%** |
+{% include figure.liquid path="assets/img/posts/implicit_bias/accuracy_comparison.png" class="img-fluid rounded z-depth-1 mx-auto d-block" width="100%" max-width="760px" height="auto" zoomable=true %}
 
 
 The splits are small, so some of these cells are noisier than they look; the hard negative numbers come from roughly two dozen examples, which is why 20.8% is five of twenty-four and 91.7% is twenty-two of twenty-four. I would not read anything into a three point gap between two of the judges. The numbers worth defending are the large, repeated ones, and the more important point is that each system fails in a characteristic way.
@@ -144,11 +133,7 @@ This is also where an early CoT prompt design choice came back to matter. My fir
 
 This is why the ood split is the result that actually carries weight, and it is worth being precise about what it shows, because it both confirmed what I hoped and overturned what I expected. The set is fifty two hand written, different family stories, evenly split between biased and unbiased, with the unbiased half deliberately loaded with natural hard negatives. I ran the specialist and the strongest of the generalist judges, the different family chain of thought judge, head to head on it.
 
-
-| System                      | OOD acc. | Yes acc. | No acc. | Fair   | Hard-neg | Subtle |
-| --------------------------- | -------- | -------- | ------- | ------ | -------- | ------ |
-| Specialist                  | 88.5%    | 84.6%    | 92.3%   | 100.0% | 81.8%    | 83.3%  |
-| Different-family judge, CoT | 92.3%    | 96.2%    | 88.5%   | 93.3%  | 81.8%    | 90.0%  |
+{% include figure.liquid path="assets/img/posts/implicit_bias/ood_accuracy_comparison.png" class="img-fluid rounded z-depth-1 mx-auto d-block" width="100%" max-width="760px" height="auto" zoomable=true %}
 
 
 The first thing this settles is the confound, in the specialist's favor. A model that had only memorized my generator's edit signature would fall apart on text that shares none of that structure, and the specialist did not. It holds its boundary out of distribution: perfect on the clean fair cases, 81.8% on natural hard negatives, balanced across biased and unbiased.

@@ -9,6 +9,9 @@ categories:
 giscus_comments: false
 featured: true
 related_posts: false
+
+toc:
+  sidebar: left
 ---
 
 Tldr;I spent some time trying to make a small language model better at math by being more careful about its training data. The model got worse. I made the data more careful. The model got worse. I tried to fix the fix. It got worse a third time. This is a write-up of why and of a result I genuinely did not see coming: the same intervention that hurts a 0.5B model helps a 3B model, and helps a 7B model more. The data never changed. The student did.
