@@ -3,52 +3,47 @@ layout: about
 title: about
 permalink: /
 subtitle:
-profile:
-  align: right
-  image:
-  image_circular: false
-  more_info:
+profile: false
 
 news: false
 selected_papers: false
-social: true
+social: false
 ---
 
-<section class="lab-hero">
-  <div class="hero-text">
-    <h1 class="hero-name">Tinuade<em>Margaret</em></h1>
-    <p class="hero-lede">
-      Figuring out how to make machines learn better.
+<section class="about-split">
+  <aside class="about-sidebar">
+    <img class="about-avatar" src="{{ 'assets/img/standard_avatar_2.jpg' | relative_url }}" alt="Portrait of Tinuade Margaret">
+    <h2 class="about-name">Tinuade Margaret</h2>
+
+    <div class="about-social-icons">
+      {% include social.liquid %}
+    </div>
+
+  </aside>
+
+  <div class="about-main">
+    <h1>Hi!</h1>
+    <p>
+      I am Tinuade Margaret, a research engineer working on reasoning, evaluation, and alignment-minded systems for frontier language models.
     </p>
-  </div>
-  <figure class="hero-illustration" aria-hidden="true">
-    <img src="{{ 'assets/img/research_engineer_doodle_centered_bg_f2ede3_700w.png' | relative_url }}" alt="">
-  </figure>
-</section>
+    <p>
+      My goal is to build AI that can augment humans: systems that make people more capable, more thoughtful, and more effective at solving difficult problems.
+    </p>
+    <p>I've worked on:</p>
+    <ul>
+      <li>reasoning and reliability evaluation pipelines for LLMs</li>
+      <li>question generation systems and NLP model diagnostics</li>
+      <li>machine learning and data systems in production settings</li>
+    </ul>
+    <p>
+      Previously, I completed an MSc in AI at Heriot-Watt and worked across education and startup environments building practical ML systems.
+    </p>
 
-<section class="chapter">
-  <div class="chapter-label">now</div>
-  <div class="now-card">
-    <div class="row">
-      <span class="key">focus</span>
-      <span class="val"><em>reasoning evaluation</em> for frontier language models</span>
-    </div>
-    <div class="row">
-      <span class="key">building</span>
-      <span class="val">eval harnesses, behavioral diagnostics, agent reliability scaffolds</span>
-    </div>
-    <div class="row">
-      <span class="key">location</span>
-      <span class="val">remote &mdash; pursuing frontier labs</span>
-    </div>
+    <section class="about-research">
+      <h2>Research</h2>
+      <div class="publications">
+        {% bibliography --group_by none %}
+      </div>
+    </section>
   </div>
-</section>
-
-<section class="chapter">
-  <div class="chapter-label">Before</div>
-  <p class="notes-block">
-    <span class="year">2024</span>MSc AI, <a href="https://www.hw.ac.uk/">Heriot-Watt</a> &mdash; question generation w/ Prof. Ioannis Konstas.<br>
-    <span class="year">before</span>ML &amp; data systems at <a href="https://atomlearning.co.uk/">Atom Learning</a>, <a href="https://smartace.ng/">Smartace</a>, <a href="https://inventone.ng/#/">InventOne</a>.<br>
-    <span class="year">always</span>field notes on the <a href="/blog/">blog</a>.
-  </p>
 </section>
