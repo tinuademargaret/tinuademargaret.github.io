@@ -3,20 +3,47 @@ layout: about
 title: about
 permalink: /
 subtitle:
-profile:
-  align: right
-  image: prof_pic.jpeg
-  image_circular: false # crops the image to make it circular
-  more_info:
+profile: false
 
-news: false # includes a list of news items
-selected_papers: false # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+news: false
+selected_papers: false
+social: false
 ---
-## :woman_technologist: &nbsp;About me
 
-💡 &nbsp;I'm a budding AI Research Engineer.\
-🎓 &nbsp;I recently completed my masters in Artificial Intelligence at [Heriot-Watt University](https://www.hw.ac.uk/), where I worked with Prof. Ioannis Konstas on Question Generation.\
-🛠 &nbsp;I have previously worked at [Atom Learning](https://atomlearning.co.uk/), [Smartace](https://smartace.ng/) and [InventOne](https://inventone.ng/#/).\
-🔭 &nbsp;My research interests are in reasoning, AI for science and AI alignment.\
-:writing_hand: &nbsp; Sometimes I make notes on my blog [here](https://tinuademargaret.github.io/blog/).
+<section class="about-split">
+  <aside class="about-sidebar">
+    <img class="about-avatar" src="{{ 'assets/img/standard_avatar_2.jpg' | relative_url }}" alt="Portrait of Tinuade Margaret">
+    <h2 class="about-name">Tinuade Margaret</h2>
+
+    <div class="about-social-icons">
+      {% include social.liquid %}
+    </div>
+
+  </aside>
+
+  <div class="about-main">
+    <h1>Hi!</h1>
+    <p>
+      I am Tinuade Margaret, a research engineer working on reasoning, evaluation, and alignment-minded systems for frontier language models.
+    </p>
+    <p>
+      My goal is to build AI that can augment humans: systems that make people more capable, more thoughtful, and more effective at solving difficult problems.
+    </p>
+    <p>I've worked on:</p>
+    <ul>
+      <li>reasoning and reliability evaluation pipelines for LLMs</li>
+      <li>question generation systems and NLP model diagnostics</li>
+      <li>machine learning and data systems in production settings</li>
+    </ul>
+    <p>
+      Previously, I completed an MSc in AI at Heriot-Watt and worked across education and startup environments building practical ML systems.
+    </p>
+
+    <section class="about-research">
+      <h2>Research</h2>
+      <div class="publications">
+        {% bibliography --group_by none %}
+      </div>
+    </section>
+  </div>
+</section>
