@@ -2,36 +2,126 @@
 ---
 
 @inproceedings{margaret2026reasoning-evals,
-  abbr={Preprint},
+  abbr={Poster},
   bibtex_show={true},
-  title={Toward Reliable Reasoning Evaluations for Frontier Language Models},
-  author={Margaret, Tinuade and Collaborator, First},
-  booktitle={Workshop on Trustworthy LLM Systems},
+  title={Decoding Logical Negation in Large Language Models: From Statistical Heuristics to Causal Semantic Circuits},
+  author={Umair Tariq and Brian cong and  Archish Prakhya and Tinuade Adeleke and Sean Wu and Ruizhe Li},
+  booktitle={ICLR Workshop on Logical Reasoning of Large Language Models},
   year={2026},
+  url={https://drive.google.com/file/d/1t_3nCIdnwc4rBqxAk-CqFcb1dMDtYrWV/view?usp=sharing},
   selected={true},
-  preview={wave-mechanics.gif},
-  abstract={Placeholder entry. Replace with your finalized title, venue, and links.}
+  preview={decoding_negation_website_bright_nogrid.gif},
+  abstract={We investigate the internal computational mechanisms that activate when large
+language models process foundational logical atomics, specifically focusing on
+logical negation. Utilizing sparse autoencoders (SAEs), we decompose high di-
+mensional residual stream activations into interpretable, localized features. We
+present a two stage investigation to isolate true logical abstraction from statis-
+tical pattern matching. In our exploratory phase, we demonstrate that smaller
+autoregressive models (e.g., GPT-2 Small) fail to encode formal logical abstrac-
+tions, achieving near random accuracy on synthetic logical extraction tasks and
+relying instead on shallow bag-of-words heuristics. Consequently, our primary
+phase shifts to Gemma-2-27B utilizing a highly controlled “nonce” (pseudoword)
+dataset to strictly isolate boolean reasoning from real world semantic priors. We
+identify a sparse set of features at Layer 10 that are causally involved in the
+model’s treatment of controlled boolean negation. We causally invert the model’s
+logical state and demonstrate that these features act as generalized semantic op-
+erators, robustly activating across diverse negators (“no”, “never”, “fail”, “un-”),
+rather than mere lexical detectors. Finally, circuit tracing reveals a feed-forward
+pathway in which ablating early layer features collapses downstream representa-
+tions by ∼40%.}
 }
 
 @article{margaret2026scientific-agents,
-  abbr={Under Review},
+  abbr={Poster},
   bibtex_show={true},
-  title={Scientific Agent Workflows with Retrieval, Tools, and Verifiable Outputs},
-  author={Margaret, Tinuade and Collaborator, Second and Collaborator, Third},
-  journal={arXiv preprint arXiv:0000.00000},
+  title={When Uncertainty Isn’t Enough: An Empirical Study of Self-Correction in Code Generation},
+  author={Pranav Rakasi and Maanas Lalwani and Arnav Srivastava and Arya Palanivel and Tinuade Adeleke and Sean Wu and Ruizhe Li},
+  booktitle={ICML Workshop on Epistemic Intelligence in Machine Learning},
   year={2026},
+  url={https://drive.google.com/file/d/1I_NejxHM0f2_rniiqVZGZheJWz9GbGsX/view?usp=sharing},
   selected={true},
-  preview={brownian-motion.gif},
-  abstract={Placeholder entry. Replace with your finalized abstract and publication metadata.}
+  preview={uncertainty_not_enough.gif},
+  abstract={Large language models for code generation often
+produce incorrect solutions without reliable indi-
+cators of failure. We study whether uncertainty es-
+timation methods developed for natural language
+transfer to code generation, and whether such sig-
+nals can improve code generation via selective
+self-correction. We evaluate five uncertainty meth-
+ods: mean token entropy, verbalized confidence,
+P(True), entropy ensembles, and semantic en-
+tropy probes, across three small code LLMs on
+HumanEval and BigCodeBench. We find that
+multi-sample P (True) achieves the strongest cor-
+relation with correctness, while all the other meth-
+ods, including semantic entropy probes, yield
+only weak correlation. We then use these uncer-
+tainty signals to drive three self-correction poli-
+cies: adaptive decoding, uncertainty-based regen-
+eration, and verification-based regeneration. Our
+results reveal a stronger negative finding than an-
+ticipated: uncertainty-based self-correction fails
+to reliably improve Pass@1, degrading accuracy
+in 11 of 12 configurations across both bench-
+marks (−3pp to −10pp), and adaptive decod-
+ing degrades accuracy in 10 of 12 configurations.
+Only verification-based self-correction reliably
+improves Pass@1, with gains of +6 to +26 per-
+centage points on HumanEval and +8 to +20
+percentage points on BigCodeBench, scaling in-
+versely with baseline strength. These findings
+replicate consistently across both benchmarks and
+suggest that cheap uncertainty estimators are in-
+sufficient on their own to improve code correct-
+ness, and that their practical value lies in serving
+as gating signals for costlier execution-based cor-
+rection loops rather than as standalone substitutes
+for verification.}
 }
 
 @inproceedings{margaret2025alignment-diagnostics,
   abbr={Poster},
   bibtex_show={true},
-  title={Alignment Diagnostics in Multi-Step Model Behavior},
-  author={Margaret, Tinuade},
-  booktitle={Conference Placeholder},
-  year={2025},
-  preview={wave-mechanics.gif},
-  abstract={Placeholder entry. Replace with accepted venue details and assets.}
+  title={Preventing Error Propagation in Coding Agents via Uncertainty-Aware Resampling},
+  author={Jason Almeida and Lokesh Sai Dasari and Anubhav Pal and Tinuade Adeleke and Sean Wu and Ruizhe Li},
+  booktitle={Agents in the wild Workshop at ICLR},
+  year={2026},
+  url={https://drive.google.com/file/d/1pedIet8A_CFRn_r9UiwKI6X6po2N5Z0i/view?usp=sharing},
+  preview={saup_self_correction_website.gif},
+  abstract={Recent advances in large language models (LLMs) have enabled agentic systems
+that perform complex, multi-step tasks in realistic environments, particularly in
+software engineering settings where agents must navigate code bases, plan actions,
+execute code, and iteratively adapt based on environmental feedback. Despite
+their capabilities, agent reliability remains a critical challenge: errors made early
+in an agent’s trajectory can propagate, leading to incorrect patches, wasted com-
+putation, or misleading confidence. Most existing uncertainty estimation meth-
+ods focus on single-turn outputs and do not account for uncertainty accumulation
+across multi-step reasoning.
+In this work, we adapt and extend Situational Awareness Uncertainty Propagation
+(SAUP) to coding agents operating on SWE-Rebench. We propose a simplified
+variant of SAUP that replaces learned semantic distance metrics with API-derived
+signals and heuristic action weights, making it practical for black-box API set-
+tings. We demonstrate how step level uncertainty estimation can be propagated
+across an agent’s trajectory and used to trigger self-correction when confidence is
+low.
+By intervening selectively at high-uncertainty steps, our approach improves final
+task success while avoiding unnecessary computation. Across three frontier mod-
+els (GPT-5, Claude Opus 4.5, and DeepSeek V3.2), uncertainty-aware resampling
+reduces mean trajectory uncertainty by 6–20% relative and improves pass@1 by
+up to 15.6 absolute percentage points, with latency overhead of 1.2–3.0× depend-
+ing on the model.}
+}
+
+@misc{karpov2025steganographicpotentialslanguagemodels,
+      abbr={Poster},
+      bibtex_show={true},
+      title={The Steganographic Potentials of Language Models}, 
+      author={Artem Karpov and Tinuade Adeleke and Seong Hah Cho and Natalia Perez-Campanero},
+      booktitle={Building Trust Workshop at ICLR 2025},
+      year={2025}, 
+      arxiv={2505.03439},
+      selected={true},
+      preview={steganographic-potentials.gif},
+      abstract={The potential for large language models (LLMs) to hide messages within plain text (steganography) poses a challenge to detection and thwarting of unaligned AI agents, and undermines faithfulness of LLMs reasoning. We explore the steganographic capabilities of LLMs fine-tuned via reinforcement learning (RL) to: (1) develop covert encoding schemes, (2) engage in steganography when prompted, and (3) utilize steganography in realistic scenarios where hidden reasoning is likely, but not prompted. In these scenarios, we detect the intention of LLMs to hide their reasoning as well as their steganography performance. Our findings in the fine-tuning experiments as well as in behavioral non fine-tuning evaluations reveal that while current models exhibit rudimentary steganographic abilities in terms of security and capacity, explicit algorithmic guidance markedly enhances their capacity for information concealment.
+}
 }

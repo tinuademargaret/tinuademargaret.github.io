@@ -627,17 +627,16 @@ code, pre, kbd, samp {
   }
 
   img.preview {
-    width: 100%;
+    width: auto;
     max-width: 150px;
-    aspect-ratio: 1 / 1;
     height: auto;
-    object-fit: contain;
-    object-position: center;
+    max-height: 150px;
     border-radius: 4px !important;
     border: 1px solid var(--global-divider-color);
     box-shadow: none !important;
     background: var(--global-bg-color);
     display: block;
+    cursor: zoom-in;
   }
 
   @media (max-width: 575.98px) {
@@ -671,8 +670,8 @@ code, pre, kbd, samp {
   .title {
     font-family: $font-sans !important;
     font-style: normal;
-    font-size: 1.22rem !important;
-    font-weight: 600;
+    font-size: 1.12rem !important;
+    font-weight: 700;
     line-height: 1.24;
     color: var(--global-text-color) !important;
     margin-bottom: 0.12rem;
@@ -680,18 +679,33 @@ code, pre, kbd, samp {
 
   .author, .periodical, .links {
     font-family: $font-sans !important;
-    font-size: 0.92rem;
+    font-size: 0.87rem;
     line-height: 1.4;
   }
 
   .author {
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 0.15rem;
+  }
+
+  .author em {
+    font-style: normal;
+    font-weight: 400;
+    border-bottom: none;
+  }
+
+  .author a {
+    color: var(--global-text-color);
+    border-bottom: none;
   }
 
   .periodical {
     color: var(--global-text-color-light);
     margin-bottom: 0.3rem;
+  }
+
+  .periodical em {
+    color: var(--global-text-color-light);
   }
 
   .links {
@@ -704,7 +718,7 @@ code, pre, kbd, samp {
     border: 1px solid #dddddd !important;
     background: #ededed !important;
     color: #666666 !important;
-    font-size: 0.78rem !important;
+    font-size: 0.74rem !important;
     font-weight: 500;
     line-height: 1.2;
     border-radius: 4px !important;
