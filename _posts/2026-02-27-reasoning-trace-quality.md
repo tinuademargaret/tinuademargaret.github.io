@@ -3,7 +3,7 @@
 layout: post
 title: When Better Reasoning Traces Hurt
 date: 2026-02-27 10:14:00-0400
-description: On the failure of pedagogical SFT data at small scale — and what student-learnable quality actually looks like
+description: On the failure of SFT data at small scale and what student learnable quality actually looks like
 tags: AI
 categories:
 giscus_comments: false
