@@ -28,9 +28,9 @@ $max-content-width: {{ site.max_width }};
  *  palette:     warm parchment & ember (light)  /  carbon & amber (dark)
  * ======================================================================= */
 
-$font-serif: "Fraunces", "Iowan Old Style", "Hoefler Text", Georgia, serif;
-$font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-$font-mono: "JetBrains Mono", "SF Mono", "Menlo", monospace;
+$font-serif: "Patrick Hand", "Comic Sans MS", cursive;
+$font-sans: "Patrick Hand", "Comic Sans MS", cursive;
+$font-mono: "Patrick Hand", "Comic Sans MS", cursive;
 
 /* -------- design tokens — single source of truth for type & rhythm -------- */
 

@@ -22,7 +22,7 @@ social: false
   </aside>
 
   <div class="about-main">
-    <h1>Hi!</h1>
+    <h1>Hello!</h1>
     <p>
       I am Tinuade Margaret, a research engineer working on reasoning, evaluation, and alignment-minded systems for frontier language models.
     </p>
