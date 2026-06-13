@@ -27,11 +27,17 @@ table {
   td,
   th {
     font-size: 1rem;
+    color: var(--global-text-color);
   }
 
   th {
     font-weight: bold;
   }
+}
+
+// Ensure Bootstrap table variants inherit theme text color.
+.table > :not(caption) > * > * {
+  color: var(--global-text-color);
 }
 
 a,

@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: The Bias That Lives in the Draft
+title: Implicit bias and Genrative verifiers
 date: 2026-05-30 10:14:00-0400
 description: A small experiment on generative verifiers and implicit social bias
 tags:
