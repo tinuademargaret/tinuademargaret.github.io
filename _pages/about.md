@@ -24,26 +24,29 @@ social: false
   <div class="about-main">
     <h1>Hello!</h1>
     <p>
-      I am Tinuade Margaret, a research engineer working on reasoning, evaluation, and alignment-minded systems for frontier language models.
+      I'm Tinuade (Tee-nu-ah-day), an AI research engineer interested in how language models learn, reason, fail, and change under different data, optimization, architecture, and objective choices.
     </p>
     <p>
-      My goal is to build AI that can augment humans: systems that make people more capable, more thoughtful, and more effective at solving difficult problems.
+      I spent about three years building and deploying software across edtech, fintech, and developer tools, then completed an MSc in Artificial Intelligence at Heriot-Watt University.
     </p>
-    <p>I've worked on:</p>
-    <ul>
-      <li>reasoning and reliability evaluation pipelines for LLMs</li>
-      <li>question generation systems and NLP model diagnostics</li>
-      <li>machine learning and data systems in production settings</li>
-    </ul>
     <p>
-      Previously, I completed an MSc in AI at Heriot-Watt and worked across education and startup environments building practical ML systems.
+      Since then, I've become increasingly focused on AI research. I've participated in research fellowships including <a href="{{'https://www.arena.education/'}}">ARENA</a> and <a href="{{'https://apartresearch.com/fellowships'}}">APART</a>, and continued developing as a researcher through  <a href="{{'https://algoverseairesearch.org/research'}}">Algoverse</a>, where I mentor research projects and contribute to new research papers. My recent work spans logical reasoning in LLMs, uncertainty-aware evaluation, and steganographic behavior in language models.
+    </p>
+    <p>
+      My current research interests explore how model behavior and internal representations emerge from training choices. This includes questions around data quality, optimization theory, mechanistic interpretability, reasoning, and the science of deep learning.
+    </p>
+    <!-- <p>
+      I'm also building neslacodex, a project focused on making tiny model training experiments easy to run, inspect, and learn from. It started as an exploration of TorchTitan style training infrastructure, but has evolved toward building a small model factory (inspired by poolside's) for small cluster experiments where the core artifact is understanding model behavior.
+    </p> -->
+    <p>
+      I write about what I'm learning and my research process through "weekend-squashed" experiments that help me build intuition quickly. I also maintain a <a href="{{'https://docs.google.com/document/d/1bM6sKwje_A-FVEo84fZOnCDJFoX2xcOam7xN7wPI5uU/edit?tab=t.0'}}">living research ideas document</a>, where I collect questions I think about investigating.
+    </p>
+    <p>
+      Outside of research, I enjoy reading, running, and watching murder mystery and crime series. I'm fascinated by intelligence organizations and how they operate, though I do not support or endorse many of their actions. You can learn more about me through my <a href="{{ '/scrapbook/' | relative_url }}">scrapbook</a>.
+    </p>
+    <p>
+      Feel free to say hi, send feedback on my work, suggest research ideas or tiny experiments, or reach out about collaboration. 
     </p>
 
-    <section class="about-research">
-      <h2>Research</h2>
-      <div class="publications">
-        {% bibliography --group_by none %}
-      </div>
-    </section>
   </div>
 </section>

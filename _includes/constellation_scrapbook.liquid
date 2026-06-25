@@ -1,0 +1,202 @@
+{% assign memories = site.data.scrapbook.memories %}
+{% assign connections = site.data.scrapbook.connections %}
+
+<section class="constellation" data-constellation aria-label="Memory constellation">
+  <div class="constellation__sky" data-sky>
+    <svg class="constellation__lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="constellation-line" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="rgba(196, 222, 255, 0.85)"></stop>
+          <stop offset="100%" stop-color="rgba(255, 255, 255, 0.55)"></stop>
+        </linearGradient>
+      </defs>
+      <g class="constellation__edges">
+        {% for edge in connections %}
+          {% assign from = memories | where: "id", edge.from | first %}
+          {% assign to = memories | where: "id", edge.to | first %}
+          {% if from and to %}
+            <line
+              class="constellation__edge"
+              data-edge
+              data-from="{{ edge.from }}"
+              data-to="{{ edge.to }}"
+              pathLength="1"
+              style="--i: {{ forloop.index0 }};"
+              x1="{{ from.x }}" y1="{{ from.y }}"
+              x2="{{ to.x }}" y2="{{ to.y }}"></line>
+          {% endif %}
+        {% endfor %}
+      </g>
+    </svg>
+
+    {% for memory in memories %}
+      <button
+        type="button"
+        class="const-star const-star--glow-{{ memory.glow | default: 2 }}"
+        data-star
+        data-id="{{ memory.id }}"
+        data-title="{{ memory.title | escape }}"
+        data-caption="{{ memory.caption | escape }}"
+        data-date="{{ memory.date | escape }}"
+        data-image="{{ memory.image | relative_url }}"
+        data-alt="{{ memory.alt | escape }}"
+        style="--x: {{ memory.x }}; --y: {{ memory.y }}; --thumb-position: {{ memory.thumb_position | default: 'center center' }};"
+        aria-haspopup="dialog"
+        aria-label="Open memory: {{ memory.title | escape }}, {{ memory.date | escape }}"
+      >
+        <span class="const-star__body">
+          <span class="const-star__halo" aria-hidden="true"></span>
+          <span class="const-star__orb">
+            <img src="{{ memory.image | relative_url }}" alt="{{ memory.alt | escape }}" loading="lazy" decoding="async">
+          </span>
+          <span class="const-star__spark" aria-hidden="true"></span>
+        </span>
+        <span class="const-star__label">
+          <span class="const-star__title">{{ memory.title }}</span>
+          <span class="const-star__date">{{ memory.date }}</span>
+        </span>
+      </button>
+    {% endfor %}
+  </div>
+
+  <div class="constellation__overlay" data-overlay hidden>
+    <button type="button" class="constellation__backdrop" data-backdrop aria-label="Close memory"></button>
+
+    <div class="constellation__focus" data-focus role="dialog" aria-modal="true" aria-labelledby="constellation-focus-title">
+      <button type="button" class="constellation__close" data-close aria-label="Close memory">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <figure class="constellation__focus-figure">
+        <img class="constellation__focus-image" data-focus-image src="" alt="">
+      </figure>
+      <div class="constellation__focus-copy">
+        <p class="constellation__focus-date" data-focus-date></p>
+        <h3 class="constellation__focus-title" id="constellation-focus-title" data-focus-title></h3>
+        <p class="constellation__focus-caption" data-focus-caption></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const roots = [...document.querySelectorAll("[data-constellation]")];
+    if (!roots.length) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    roots.forEach((root) => {
+      const stars = [...root.querySelectorAll("[data-star]")];
+      const edges = [...root.querySelectorAll("[data-edge]")];
+      const overlay = root.querySelector("[data-overlay]");
+      const backdrop = root.querySelector("[data-backdrop]");
+      const focus = root.querySelector("[data-focus]");
+      const closeButton = root.querySelector("[data-close]");
+      const focusImage = root.querySelector("[data-focus-image]");
+      const focusTitle = root.querySelector("[data-focus-title]");
+      const focusDate = root.querySelector("[data-focus-date]");
+      const focusCaption = root.querySelector("[data-focus-caption]");
+
+      if (!stars.length || !overlay || !backdrop || !focus || !closeButton) return;
+
+      let activeId = null;
+      let previousFocus = null;
+      let hideTimer = null;
+
+      // Map each star to the edges it touches, so hovering a star can light its lines.
+      const edgesByStar = new Map();
+      edges.forEach((edge) => {
+        [edge.dataset.from, edge.dataset.to].forEach((id) => {
+          if (!edgesByStar.has(id)) edgesByStar.set(id, []);
+          edgesByStar.get(id).push(edge);
+        });
+      });
+
+      const highlightEdges = (id, on) => {
+        (edgesByStar.get(id) || []).forEach((edge) => edge.classList.toggle("is-lit", on));
+      };
+
+      stars.forEach((star) => {
+        const id = star.dataset.id;
+        star.addEventListener("pointerenter", () => highlightEdges(id, true));
+        star.addEventListener("pointerleave", () => highlightEdges(id, false));
+        star.addEventListener("focus", () => highlightEdges(id, true));
+        star.addEventListener("blur", () => highlightEdges(id, false));
+      });
+
+      const setActiveState = (id) => {
+        stars.forEach((star) => {
+          star.classList.toggle("is-active", star.dataset.id === id);
+        });
+      };
+
+      const closeFocus = () => {
+        if (!activeId) return;
+        activeId = null;
+        root.classList.remove("is-focus-open");
+        setActiveState(null);
+
+        const hide = () => { overlay.hidden = true; };
+        window.clearTimeout(hideTimer);
+        if (reduceMotion) hide();
+        else hideTimer = window.setTimeout(hide, 260);
+
+        if (previousFocus instanceof HTMLElement) previousFocus.focus();
+      };
+
+      const openFocus = (star) => {
+        const id = star.dataset.id;
+        if (!id) return;
+        window.clearTimeout(hideTimer);
+
+        activeId = id;
+        previousFocus = star;
+        setActiveState(id);
+
+        if (focusImage) {
+          focusImage.src = star.dataset.image || "";
+          focusImage.alt = star.dataset.alt || "";
+        }
+        if (focusTitle) focusTitle.textContent = star.dataset.title || "";
+        if (focusDate) focusDate.textContent = star.dataset.date || "";
+        if (focusCaption) focusCaption.textContent = star.dataset.caption || "";
+
+        overlay.hidden = false;
+        requestAnimationFrame(() => {
+          root.classList.add("is-focus-open");
+          closeButton.focus();
+        });
+      };
+
+      stars.forEach((star) => {
+        star.addEventListener("click", () => {
+          if (activeId && star.dataset.id === activeId) closeFocus();
+          else openFocus(star);
+        });
+      });
+
+      backdrop.addEventListener("click", closeFocus);
+      closeButton.addEventListener("click", closeFocus);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && activeId) closeFocus();
+      });
+
+      // Keep keyboard focus trapped inside the dialog while it is open.
+      focus.addEventListener("keydown", (event) => {
+        if (event.key !== "Tab") return;
+        const focusables = focus.querySelectorAll("button, [href], img[tabindex]");
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+    });
+  })();
+</script>

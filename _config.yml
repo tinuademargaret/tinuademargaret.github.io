@@ -6,7 +6,7 @@ title: blank
 first_name: Tinuade
 middle_name:
 last_name: Margaret
-email: you@example.com
+email: tinuademargaret@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Tinuade Margaret — research engineer working on reasoning, evaluation, and alignment-minded systems for frontier language models.
 footer_text: >
@@ -15,7 +15,7 @@ footer_text: >
   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
 keywords: ai research engineer, llm reasoning, model evaluation, ai alignment, scientific ai
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: T # the letter used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://tinuademargaret.github.io # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/. Leave blank for root
@@ -71,7 +71,7 @@ github_username: tinuademargaret # your GitHub user name
 gitlab_username: # your GitLab user name
 x_username: # your X handle
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
-linkedin_username: # your LinkedIn user name
+linkedin_username: Tinuade Adeleke # your LinkedIn user name
 telegram_username: # your Telegram user name
 scholar_userid: # your Google Scholar ID
 semanticscholar_id: # your Semantic Scholar ID

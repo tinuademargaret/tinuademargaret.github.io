@@ -330,7 +330,7 @@ Gold has the most tokens, by a clear margin. Normal sits in the middle. Titanium
 
 ---
 
-## What I'd actually try next
+## What I'd like to try next
 
 One consequence of this result is that we might be leaving some data on the table from targeted improvements on vanilla cot. Is there a world where we can train a model on the same dataset multiple times with improvements in the reasoning traces each round based on the observed failures of the previous round and without overfitting or collapsing the model?
 

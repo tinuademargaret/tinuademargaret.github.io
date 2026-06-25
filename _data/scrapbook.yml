@@ -1,0 +1,210 @@
+# Memory constellation data.
+# Each star is one memory. x/y are percentages (0-100) of the star map, so the
+# layout scales on any screen. Add a new memory by appending to `memories`, then
+# link it up by adding pairs to `connections`. `glow` (1-3) just tweaks star size.
+# Use `thumb_position` when a circular thumbnail needs a custom crop focus.
+
+memories:
+  - id: memory-1
+    title: "I used to build lego robots"
+    caption: "Started out my coding journey with lego and tetrix robots as part of a robotics club in uni. I had the opportunity to demo stuff at events and conferences. I also taught kids how to code and build legorobots."
+    # date: "Mar 2026"
+    image: /assets/img/scrapbook/ilabroc_spac.jpg
+    alt: "Open notebook filled with handwritten brainstorm notes"
+    x: 14
+    y: 26
+    glow: 2
+
+  - id: memory-2
+    title: "Made some of my life long friends while doing this."
+    caption: "It was a lot of fun."
+    date: "Apr 2026"
+    image: /assets/img/scrapbook/fifi+me+tetrix.jpg
+    alt: "Coffee cup beside an open laptop during a late debugging session"
+    x: 30
+    y: 14
+    glow: 1
+
+  - id: memory-3
+    title: "Girls with grit hackathon"
+    caption: "When I won the first hackathon I ever participated in"
+    # date: "Apr 2026"
+    image: /assets/img/scrapbook/first_hackathon_win.JPG
+    alt: "When I won the first hackathon I ever participated in"
+    x: 47
+    y: 22
+    glow: 3
+
+  - id: memory-4
+    title: "More Lego fun with my friends"
+    # caption: "Ideas always seem to travel better than the plans do."
+    # date: "Feb 2026"
+    image: /assets/img/scrapbook/fifi+me+ilabroctour.jpg
+    alt: "Sunset seen through a wide airport terminal window"
+    x: 64
+    y: 13
+    glow: 1
+    thumb_position: center top
+
+  - id: memory-5
+    title: "Moved to Edinburgh"
+    caption: "Moved to edinburgh for my masters and saw these beautiful northern lights in my first week there"
+    date: "Jan 2026"
+    image: /assets/img/scrapbook/edinburgh_mv_nothern_lights.jpg
+    alt: "Moved to edinburgh for my masters and saw these beautiful northern lights in my first week there"
+    x: 82
+    y: 24
+    glow: 2
+
+  - id: memory-6
+    title: "Dubai Burj Khalifa"
+    caption: "Visited Dubai for the first time and saw the beautiful skyline and the Dubai fountain show"
+    date: "Nov 2025"
+    image: /assets/img/scrapbook/dubai_burj.jpg
+    alt: "Visited Dubai for the first time and saw the beautiful skyline and the Dubai fountain show"
+    x: 86
+    y: 47
+    glow: 1
+
+  - id: memory-7
+    title: "My Msc Graduation"
+    caption: "My first graduation ceremony that I was actually able to attend"
+    date: "Dec 2025"
+    image: /assets/img/scrapbook/msc_in_d_bag_slay.jpg
+    alt: "My first graduation ceremony that I was actually able to attend"
+    x: 68
+    y: 41
+    glow: 2
+    thumb_position: center top
+
+  - id: memory-8
+    title: "Place Vendome Mall in Qatar"
+    caption: "Qatar in one word, luxurious"
+    date: "Oct 2025"
+    image: /assets/img/scrapbook/qatar.jpg
+    alt: "Qatar in one word, luxurious"
+    x: 49
+    y: 49
+    glow: 3
+
+  - id: memory-9
+    title: "Hong Kong Island"
+    caption: "Went to see why my friend chose to move to Hong Kong over London and tbh I get it now"
+    date: "Jan 2026"
+    image: /assets/img/scrapbook/hong_kong.jpg
+    alt: "Went to see why my friend chose to move to Hong Kong over London and tbh I get it now"
+    x: 30
+    y: 45
+    glow: 1
+
+  - id: memory-10
+    title: "Presenting my work from APART Research Fellowship with other fellows"
+    caption: "This was my first poster presentation and my first time in the United States."
+    date: "May 2026"
+    image: /assets/img/scrapbook/apart_poster.webp
+    alt: "Morning sunlight stretched across a tidy writing desk"
+    x: 15
+    y: 53
+    glow: 2
+
+  - id: memory-11
+    title: "Seeing Benjamin Franklin in Philadelphia"
+    caption: "Learnt a lot about the history of the United States and the founding fathers of the country while visiting Philadelphia"
+    #   date: "Sep 2025"
+    image: /assets/img/scrapbook/benjamin_at_philly.jpg
+    alt: "A pocket notebook of small field observations"
+    x: 41
+    y: 70
+    glow: 1
+
+  - id: memory-12
+    title: "Curiousity is the spice of life"
+    caption: "Inspired by the amount of things he invented driven by sheer curiosity."
+    # date: "Aug 2025"
+    image: /assets/img/scrapbook/more_benjamin_stuff.jpg
+    alt: "View from a train window seat with landscape rushing by"
+    x: 64
+    y: 67
+    glow: 2
+
+  - id: memory-13
+    title: "Recorded some embedded systems tutorial videos for IHS Towers"
+    caption: "This was for their Mission-T project designed to empower teachers across various states in Nigeria with STEM education."
+    # date: "Sep 2025"
+    image: /assets/img/scrapbook/arduino_face_clip.gif
+    alt: "Recorded some embedded systems tutorial videos for IHS Towers"
+    x: 27
+    y: 66
+    glow: 1
+
+  - id: memory-14
+    title: "Learnt about Phillis Wheatley for the first time"
+    caption: "She was the first African American woman to publish a book of poetry in the United States. She's a constant reminder to me that ability is equally distributed and language is not a barrier to a beautiful mind. I've gone on to read her work titled 'Poems on Various Subjects, Religious and Moral'."
+    # date: "Jun 2025"
+    image: /assets/img/scrapbook/my_girl_phillis_wheatley.jpg
+    alt: "She was the first African American woman to publish a book of poetry in the United States. She's a constant reminder to me that ability is equally distributed and language is not a barrier to a beautiful mind. I've gone on to read her work titled 'Poems on Various Subjects, Religious and Moral'."
+    x: 83
+    y: 65
+    glow: 2
+    thumb_position: center top
+
+  - id: memory-15
+    title: "Chicago!"
+    caption: "You can tell by my awkward pose that I'm really not a picture person"
+    # date: "May 2025"
+    image: /assets/img/scrapbook/chicago.jpg
+    alt: "An empty late-night train carriage"
+    x: 52
+    y: 82
+    glow: 1
+
+  - id: memory-16
+    title: "I used to post study videos content on instagram"
+    caption: "Stopped posting because I was having the opposite effect on people, it felt like people were getting intimidated rather than inspired. Rethinking new ways to share my passion. Watch out!"
+    # date: "Aug 2025"  
+    image: /assets/img/scrapbook/study_content.png
+    alt: "Soft afternoon light falling across a quiet studio"
+    x: 9
+    y: 38
+    glow: 2
+
+  - id: memory-17
+    title: "My first race!"
+    caption: "Ran my first 10k race and finished in 1 hour and 10 minutes. Battled with Asthma for the longest time and this was something I was constantly being told I couldn't do growing up."
+    # date: "Sep 2025"
+    image: /assets/img/scrapbook/yay_10k_run.jpg
+    alt: "Boats resting in a calm harbor at sunrise"
+    x: 73
+    y: 79
+    glow: 1
+
+  
+
+# Constellation lines. These are intentional, not random: a flowing spine across
+# the top, dropping into a lower cluster, with a couple of short branches.
+connections:
+  - { from: memory-1, to: memory-2 }
+  - { from: memory-2, to: memory-3 }
+  - { from: memory-3, to: memory-4 }
+  - { from: memory-4, to: memory-5 }
+  - { from: memory-5, to: memory-6 }
+  - { from: memory-6, to: memory-7 }
+  - { from: memory-3, to: memory-7 }
+  - { from: memory-7, to: memory-8 }
+  - { from: memory-8, to: memory-9 }
+  - { from: memory-9, to: memory-1 }
+  - { from: memory-9, to: memory-10 }
+  - { from: memory-8, to: memory-11 }
+  - { from: memory-11, to: memory-12 }
+  - { from: memory-12, to: memory-7 }
+  - { from: memory-16, to: memory-1 }
+  - { from: memory-16, to: memory-10 }
+  - { from: memory-11, to: memory-13 }
+  - { from: memory-13, to: memory-10 }
+  - { from: memory-11, to: memory-15 }
+  - { from: memory-15, to: memory-12 }
+  - { from: memory-12, to: memory-14 }
+  - { from: memory-14, to: memory-6 }
+  - { from: memory-14, to: memory-17 }
+  - { from: memory-17, to: memory-15 }
+  # - { from: memory-17, to: memory-18 }
