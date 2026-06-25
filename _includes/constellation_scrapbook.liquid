@@ -40,7 +40,7 @@
         data-date="{{ memory.date | escape }}"
         data-image="{{ memory.image | relative_url }}"
         data-alt="{{ memory.alt | escape }}"
-        style="--x: {{ memory.x }}; --y: {{ memory.y }}; --thumb-position: {{ memory.thumb_position | default: 'center center' }};"
+        style="--x: {{ memory.x }}%; --y: {{ memory.y }}%; --thumb-position: {{ memory.thumb_position | default: 'center center' }};"
         aria-haspopup="dialog"
         aria-label="Open memory: {{ memory.title | escape }}, {{ memory.date | escape }}"
       >

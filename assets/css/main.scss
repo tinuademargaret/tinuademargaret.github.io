@@ -1017,8 +1017,8 @@ progress[value]::-moz-progress-bar {
 /* ---- a single memory "star" ---- */
 .const-star {
   position: absolute;
-  left: calc(var(--x, 50) * 1%);
-  top: calc(var(--y, 50) * 1%);
+  left: var(--x, 50%);
+  top: var(--y, 50%);
   width: var(--star-size);
   height: var(--star-size);
   margin: 0;
